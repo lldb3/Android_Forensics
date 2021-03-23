@@ -27,7 +27,6 @@ def read_gesture(gesture_file_loc=""):
         sha1bytes = []
         for i in range(0, 20):
             sha1hash = gesture_file.read(1)
-            #print(sha1hash, sha1hash.hex())
             sha1bytes.append(sha1hash.hex())
             i += 1
         sha1hash = ""
@@ -49,8 +48,9 @@ def match_pattern(dictionary="", sha1hash=""):
         if line.__contains__(sha1hash):
             index = line.index(";", 0, 10)
             pattern = ''.join(line.split(';')[1].split(' '))
+            pattern_minimal = pattern[1::2]
             print("Found", line)
-            print(f"Pattern is {pattern}")
+            print(f"Pattern is {pattern}, alternative notation: {pattern_minimal}")
 
 def parse_opt():
     # Create a option parser
